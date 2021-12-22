@@ -11,10 +11,14 @@ import edu.phuxuan.k17.spring.baitapcontrollerdemo.repository.CustormerRepositor
 import edu.phuxuan.k17.spring.baitapcontrollerdemo.repository.CustormerRepositoryImpl;
 import edu.phuxuan.k17.spring.baitapcontrollerdemo.repository.ProductRepository;
 import edu.phuxuan.k17.spring.baitapcontrollerdemo.repository.ProductRepositoryImpl;
+import edu.phuxuan.k17.spring.baitapcontrollerdemo.repository.UserRepository;
+import edu.phuxuan.k17.spring.baitapcontrollerdemo.repository.UserRepositoryImpl;
 import edu.phuxuan.k17.spring.baitapcontrollerdemo.services.CustormerService;
 import edu.phuxuan.k17.spring.baitapcontrollerdemo.services.CustormerServiceImpl;
 import edu.phuxuan.k17.spring.baitapcontrollerdemo.services.ProductService;
 import edu.phuxuan.k17.spring.baitapcontrollerdemo.services.ProductServiceImpl;
+import edu.phuxuan.k17.spring.baitapcontrollerdemo.services.UserService;
+import edu.phuxuan.k17.spring.baitapcontrollerdemo.services.UserServiceImpl;
 
 @Configuration
 @EnableWebMvc
@@ -49,6 +53,14 @@ public class AppConfig {
     @Bean
     public CustormerRepository custormerRepository(){
         return new CustormerRepositoryImpl();
+    }@Bean
+    public UserService userService(){
+        return new UserServiceImpl();
+    }
+
+    @Bean
+    public UserRepository  userRepository(){
+        return new UserRepositoryImpl();
     }
 }
 
