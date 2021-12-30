@@ -1,5 +1,6 @@
 <html>
 <body>
-<h2>Hello World!</h2>
+<h1>Spring MVC 5 + Hibernate 5 + JSP + MySQL Example</h1>
 </body>
+<a href="customer/list">Custormer</a>
 </html>
