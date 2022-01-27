@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Bình luận</title>
+</head>
+<body>
+<div class="container p-5 justify-content-center" style="max-width: 50em;margin-top: 80px;" th:fragment = "content">
+	<div class="card mb-3">
+	  <img class="card-img-top" th:src="@{/resources/uploads/post/__${post.image}__}" alt="Card image cap">
+	  <div class="card-body">
+	    <h5 class="card-title" th:text="${post.title}">Bình luận</h5>
+	    <p class="card-text" th:text="${post.content}" >Hãy để bình luận tại đây.</p>
+	    <p class="card-text">
+	    <th:block th:each = "tag:${post.tags}">
+	    	<small class="text-muted" th:text ="${tag.name}">cập nhật 2p trước</small>
+	    </th:block>
+	    
+	    </p>
+	  </div>
+	</div>
+	<div class="card mb-3">
+	  <div class="card-body">
+	  
+	  	<th:block th:each = "cm:${post.comments}">
+	  		<p><strong th:text ="${cm.customer.fullname}">admin</strong> :<th:block th:text="${cm.message}"></th:block></p>
+	    </th:block>
+	    
+	  </div>
+	</div>
+	<div class="card mb-3">
+	  <div class="card-body">
+	    <form th:action="@{saveComment?postId=__${post.id}__}" th:object ="${comment}" method="post">
+	    	<div class="form-group">
+		    <label for="exampleFormControlTextarea1">Bình luận</label>
+		    <textarea class="form-control"  rows="3" th:field ="*{message}"></textarea>
+	  		</div>
+	  		<button type="submit" class="btn btn-primary mb-2">Gửi</button>
+	    </form>
+	  </div>
+	</div>
+	
+</div>
+</body>
+</html>

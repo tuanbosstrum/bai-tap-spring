@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Danh sách tag</title>
+</head>
+<body>
+	<div class="container p-5 justify-content-center"
+		style="max-width: 50rem;margin-top: 80px;" th:fragment="content">
+		<div class="card bg-lights text-center p-3">
+			<h3 class="text-center font-weight-bold">Danh sách Tag</h3>
+			<div class="card-body ">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Tag</th>
+							<th>Tùy chọn</th>
+						</tr>
+					</thead>
+					<tbody>
+					<th:block th:each="tag : ${tags}">
+						<tr>
+							<td th:text="${tag.name}"></td>
+							<td><a th:href ="@{update(id=${tag.id})}" class="btn btn-outline-primary"><i class="fas fa-wrench"></i></a></td>
+						</tr>
+					</th:block>
+					</tbody>
+				</table>
+				<ul class="pagination justify-content-center mt-2">
+					<li class="page-item"><a class="page-link" href="#"><i
+							class="fas fa-angle-left"></i></a></li>
+					<li class="page-item"><a class="page-link" href="#"><i
+							class="fas fa-angle-right"></i></a></li>
+				</ul>
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

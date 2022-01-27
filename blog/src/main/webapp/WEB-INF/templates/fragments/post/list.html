@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Danh sách bài viết</title>
+</head>
+<body>
+	<div class="container p-5 justify-content-center"
+		style="max-width: 50rem;margin-top: 80px;" th:fragment="content">
+		<div class="card bg-lights text-center p-3">
+			<h3 class="text-center font-weight-bold">Danh sách bài viết</h3>
+			<div class="card-body ">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Tiêu đề</th>
+							<th>Ảnh</th>
+							<th>Nội dung</th>
+							<th>Mô tả</th>
+							<th>Thao tác</th>
+						</tr>
+					</thead>
+					<tbody>
+					<th:block th:each="post : ${posts}">
+						<tr>
+							<td th:text="${post.title}"></td>
+							<td th:text="${post.image}"></td>
+							<td th:text="${post.content}"></td>
+							<td th:text="${post.des}"></td>
+							<td><a th:href ="@{update(id=${post.id})}" class="btn btn-outline-primary"><i class="fas fa-wrench"></i></a></td>
+							<td><a th:href ="@{remove(id=${post.id})}" class="btn btn-outline-danger"><i class="fas fa-eraser"></i></a></td>
+						</tr>
+					</th:block>
+					</tbody>
+				</table>
+				<ul class="pagination justify-content-center mt-2">
+					  <li class="page-item"><a class="page-link" th:href="@{page?num=__${currentPage == 1 ?1:currentPage  - 1}__&field=__${field}__&dir=__${dir}__}"><i class="fas fa-angle-left"></i></a></li>
+					  <li class="page-item"><a class="page-link" th:href="@{page?num=__${currentPage > posts.getTotalPages() ?1:currentPage  + 1}__&field=__${field}__&dir=__${dir}__}"><i class="fas fa-angle-right"></i></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

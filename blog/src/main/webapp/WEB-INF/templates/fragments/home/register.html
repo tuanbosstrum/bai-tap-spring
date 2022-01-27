@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Đăng ký</title>
+</head>
+<body>
+<div class="container p-5 justify-content-center" style="max-width: 23rem;margin-top: 80px;" th:fragment = "content">
+		<div class="card bg-lights text-center p-3">
+			<h3 class="text-center font-weight-bold">Đăng ký</h3>
+			<div class="card-body ">
+				<form th:action="@{register}" th:object ="${customer}" method="post">
+					<div class="form-group row">
+						<div class="col-md-12">
+							<input type="text" class="form-control"
+								placeholder="Tên hiển thị" th:field="*{fullname}" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-12">
+							<input type="text" class="form-control"
+								placeholder="Tài khoản" th:field="*{username}" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-12">
+							<input type="password" class="form-control"
+								placeholder="Mật khẩu" th:field="*{password}" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-12">
+							<input type="password" name="repassword" class="form-control"
+								placeholder="Xác nhận mật khẩu" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-outline-primary mb-2">Đăng ký</button>
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

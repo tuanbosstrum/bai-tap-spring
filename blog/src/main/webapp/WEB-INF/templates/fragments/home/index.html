@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Trang chủ</title>
+</head>
+<body>
+<div class="container-fluid" th:fragment = "content">
+		<div class="row">
+			<div class="col-md-10 row">
+				<th:block th:each ="post : ${posts}">
+				<div class="col-md-4 p-2">
+					<div class="card">
+					  <img class="card-img-top" th:src="@{/resources/uploads/post/__${post.image}__}" alt="Card image cap" width="286px" height="180px">
+					  <div class="card-body">
+					  	<h4 class="card-text" th:text="${post.title}">Tiêu đề</h4>
+					    <p class="card-text" th:text="${post.des}">Nội dung</p>
+					  </div>
+					  <div class="card-body">
+					  	<a th:href="@{like?postId=__${post.id}__&action=like}" class="card-link"><i class="far fa-thumbs-up"></i></a><strong th:text = "${post.likes}"></strong>
+					  	<a th:href="@{like?postId=__${post.id}__&action=dislike}" class="card-link"><i class="far fa-thumbs-down"></i></a><strong th:text = "${post.dislikes}"></strong>
+		    			<a th:href="@{comment?postId=__${post.id}__}" class="card-link"><i class="far fa-comments"></i></a>
+					  </div>
+					</div>
+				</div>
+				</th:block>
+				
+			</div>
+			<div class="container col-md-2 bg-light">
+				<form>
+				  <div class="form-group">
+				    <input type="text" class="form-control"  placeholder="Tìm kiếm...">
+				  </div>
+				</form>
+				<div class="tags">
+					<h5>Tags</h5>
+					
+						<div class="list-tag">
+							<th:block th:each ="tag : ${tags}">
+								<a th:href="@{findByTag/__${tag.id}__}" class="badge badge-primary" th:text="${tag.name}">Primary</a>
+							</th:block>
+						</div>
+					
+				
+				</div>
+			</div>
+			<div class="col-md-12">
+					
+					<ul class="pagination justify-content-center mt-2">
+					  <li class="page-item"><a class="page-link" th:href="@{page?num=__${currentPage == 1 ?1:currentPage  - 1}__&field=__${field}__&dir=__${dir}__}"><i class="fas fa-angle-left"></i></a></li>
+					  <li class="page-item"><a class="page-link" th:href="@{page?num=__${currentPage > posts.getTotalPages() ?1:currentPage  + 1}__&field=__${field}__&dir=__${dir}__}"><i class="fas fa-angle-right"></i></a></li>
+					</ul>
+			</div>
+		</div>
+		
+	</div>
+</body>
+</html>

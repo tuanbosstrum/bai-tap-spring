@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Đăng bài</title>
+</head>
+<body>
+	<div class="container p-5 justify-content-center"
+		style="max-width: 30rem; margin-top: 80px;" th:fragment="content">
+		<div class="card bg-lights text-center p-3">
+			<h3 class="text-center font-weight-bold">Đăng bài</h3>
+			<div class="card-body ">
+				<form th:action="@{save}" th:object ="${post}" enctype="multipart/form-data" method="post">
+					<div class="form-group row">
+						<div class="col-md-12">
+							<input type="text" class="form-control" th:field="*{title}" placeholder="Tiêu đề" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-12">
+							<input type="file" name ="photo" accept="image/*" class="form-control" placeholder="Hình ảnh" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-12">
+							<textarea class="form-control" rows="5" id="comment" th:field="*{content}" placeholder="Nội dung"></textarea>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-12">
+							<input type="text" class="form-control" th:field="*{des}" placeholder="Mô tả" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-12">
+							<select class="custom-select" th:field="*{tags}" multiple>
+							    <option th:each="tg : ${tags}" th:selected="${post.tags.contains(tg)}" th:value="${tg.id}" th:text="${tg.name}" th:field="*{tags}">Name</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-outline-success mb-2">Đăng</button>
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
